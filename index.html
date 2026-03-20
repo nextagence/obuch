@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Курсы по арбитражу трафика</title>
+  <meta name="description" content="Практические курсы по арбитражу трафика: для новичков, тех кто хочет выйти на стабильный доход, и для тех, кто хочет масштабироваться." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-strong: rgba(255, 255, 255, 0.1);
+      --text: #f5f7fb;
+      --muted: #b6bfd3;
+      --line: rgba(255, 255, 255, 0.12);
+      --accent: #7c5cff;
+      --accent-2: #00d4ff;
+      --success: #19c37d;
+      --warning: #ffb020;
+      --danger: #ff5c7a;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124, 92, 255, 0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(0, 212, 255, 0.12), transparent 28%),
+        linear-gradient(180deg, #0b1020 0%, #0d1327 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--muted);
+      font-size: 14px;
+      backdrop-filter: blur(14px);
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 16, 32, 0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .logo span {
+      color: var(--accent-2);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 15px;
+      transition: 0.25s;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(124, 92, 255, 0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 35px rgba(124, 92, 255, 0.36);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .hero {
+      padding: 80px 0 60px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      margin: 20px 0 18px;
+      max-width: 800px;
+    }
+
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, #fff, var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 650px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 30px;
+      max-width: 720px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(124, 92, 255, 0.4), transparent 70%);
+      top: -70px;
+      right: -70px;
+      filter: blur(10px);
+    }
+
+    .mini-card {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mini-card-title {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .mini-card-value {
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .mini-card-value small {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card,
+    .price-card,
+    .faq-item,
+    .audience-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      backdrop-filter: blur(14px);
+    }
+
+    .feature-card h3,
+    .audience-card h3,
+    .price-card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p,
+    .audience-card p,
+    .price-card p,
+    .faq-item p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, rgba(124,92,255,0.22), rgba(0,212,255,0.18));
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 22px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .price-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .price-card.popular {
+      border: 1px solid rgba(124, 92, 255, 0.55);
+      box-shadow: 0 20px 50px rgba(124, 92, 255, 0.18);
+      transform: translateY(-6px);
+      background: linear-gradient(180deg, rgba(124,92,255,0.13), rgba(255,255,255,0.05));
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    .price-label {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .price {
+      font-size: clamp(34px, 4vw, 48px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    .price small {
+      font-size: 16px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .price-list {
+      list-style: none;
+      margin: 24px 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .price-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .price-list li span {
+      color: var(--success);
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .price-card .btn {
+      margin-top: auto;
+      width: 100%;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .faq-item h4 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .cta-box {
+      padding: 34px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(124,92,255,0.18), rgba(0,212,255,0.12));
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-box h3 {
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .cta-box p {
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 20px;
+    }
+
+    .sticky-cta {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      z-index: 120;
+      display: none;
+    }
+
+    .sticky-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      padding: 14px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      box-shadow: 0 18px 35px rgba(124, 92, 255, 0.32);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .grid-3,
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .sticky-cta {
+        display: block;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding-top: 52px;
+      }
+
+      .section {
+        padding: 52px 0;
+      }
+
+      .hero p,
+      .section-desc {
+        font-size: 16px;
+      }
+
+      .cta-box {
+        padding: 24px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">Traffic<span>Academy</span></a>
+      <nav class="nav">
+        <a href="#about">О курсе</a>
+        <a href="#for-whom">Для кого</a>
+        <a href="#pricing">Тарифы</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="btn btn-secondary" style="padding: 10px 16px;">Связаться</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge">🚀 Практическое обучение арбитражу трафика</div>
+        <h1>
+          Научись <span class="gradient">арбитражу трафика</span> и начни зарабатывать на связках, креативах и воронках
+        </h1>
+        <p>
+          Без воды, без инфоцыганского тумана, без магии “миллион за 3 дня”.
+          Только практика: офферы, креативы, тесты, аналитика, масштабирование и реальные рабочие процессы.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#pricing" class="btn btn-primary">Выбрать тариф</a>
+          <a href="#contact" class="btn btn-secondary">Получить консультацию</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>3 тарифа</strong>
+            <span>Под разный уровень и бюджет</span>
+          </div>
+          <div class="stat">
+            <strong>Практика</strong>
+            <span>Фокус на запуск и результат</span>
+          </div>
+          <div class="stat">
+            <strong>Поддержка</strong>
+            <span>Ответы, разборы, сопровождение</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="mini-card">
+          <div class="mini-card-title">Стартовый пакет</div>
+          <div class="mini-card-value">99 000 <small>тг</small></div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">Продвинутый пакет</div>
+          <div class="mini-card-value">250 000 <small>тг</small></div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">VIP / Личное наставничество</div>
+          <div class="mini-card-value">450 000 <small>тг</small></div>
+        </div>
+        <p style="color: var(--muted); margin-top: 8px; position: relative; z-index: 1;">
+          Выбирай формат под свою цель: войти в нишу, выйти на стабильные запуски или ускорить путь за счет личного сопровождения.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title">Что внутри курса</h2>
+      <p class="section-desc">
+        Система обучения собрана так, чтобы ты не просто “посмотрел уроки”, а понял механику арбитража и смог собрать свою первую рабочую воронку.
+      </p>
+
+      <div class="grid-3">
+        <div class="feature-card">
+          <div class="icon">🎯</div>
+          <h3>Выбор ниши и офферов</h3>
+          <p>Разберешься, как искать направления, оценивать офферы, понимать потенциал рынка и не лезть в откровенный мусор.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">📈</div>
+          <h3>Запуск рекламы</h3>
+          <p>Узнаешь, как строить связки, делать тесты, считать базовые метрики и принимать решения не на эмоциях, а по цифрам.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">🧠</div>
+          <h3>Креативы и аналитика</h3>
+          <p>Научишься делать объявления, которые реально цепляют, и анализировать кампании так, чтобы масштабировать плюс, а не минус. Красиво, но не в стиле “сжечь бюджет ради вайба”.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="for-whom">
+    <div class="container">
+      <h2 class="section-title">Для кого этот курс</h2>
+      <p class="section-desc">
+        Неважно, ты полный новичок или уже что-то запускал — здесь есть понятная траектория под каждый уровень.
+      </p>
+
+      <div class="grid-3">
+        <div class="audience-card">
+          <h3>Новичкам</h3>
+          <p>Если хочешь войти в арбитраж с нормальной базой, а не собирать инфу по кускам из TikTok, форумов и легенд от “гуру”.</p>
+        </div>
+        <div class="audience-card">
+          <h3>Тем, кто уже пробовал</h3>
+          <p>Если уже были запуски, но нет стабильности, понимания аналитики или нормальной системы принятия решений.</p>
+        </div>
+        <div class="audience-card">
+          <h3>Тем, кто хочет масштаб</h3>
+          <p>Если нужен персональный разбор, ускорение и доступ к более глубокому уровню работы со связками, креативами и воронками.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="container">
+      <h2 class="section-title">Тарифы</h2>
+      <p class="section-desc">
+        Три формата обучения — от уверенного старта до личного сопровождения.
+      </p>
+
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-label">Тариф 1 — База</div>
+          <h3>Старт</h3>
+          <div class="price">99 000 <small>тг</small></div>
+          <p>Для тех, кто хочет понять фундамент и войти в нишу правильно.</p>
+
+          <ul class="price-list">
+            <li><span>✓</span> Доступ к базовым модулям</li>
+            <li><span>✓</span> Введение в арбитраж трафика</li>
+            <li><span>✓</span> Поиск офферов и понимание связок</li>
+            <li><span>✓</span> База по креативам и воронкам</li>
+            <li><span>✓</span> Доступ к материалам на 3 месяца</li>
+          </ul>
+
+          <a href="#contact" class="btn btn-secondary">Выбрать тариф</a>
+        </div>
+
+        <div class="price-card popular">
+          <div class="popular-badge">ХИТ</div>
+          <div class="price-label">Тариф 2 — Практика</div>
+          <h3>Продвинутый</h3>
+          <div class="price">250 000 <small>тг</small></div>
+          <p>Для тех, кто хочет перейти от теории к реальному запуску и системной работе.</p>
+
+          <ul class="price-list">
+            <li><span>✓</span> Всё из тарифа “Старт”</li>
+            <li><span>✓</span> Продвинутые модули по тестам</li>
+            <li><span>✓</span> Работа с метриками и аналитикой</li>
+            <li><span>✓</span> Разбор креативов и связок</li>
+            <li><span>✓</span> Доступ в закрытый чат</li>
+            <li><span>✓</span> Поддержка и ответы на вопросы</li>
+          </ul>
+
+          <a href="#contact" class="btn btn-primary">Выбрать тариф</a>
+        </div>
+
+        <div class="price-card">
+          <div class="price-label">Тариф 3 — VIP</div>
+          <h3>Наставничество</h3>
+          <div class="price">450 000 <small>тг</small></div>
+          <p>Максимум пользы для тех, кто хочет ускорить результат через личную работу.</p>
+
+          <ul class="price-list">
+            <li><span>✓</span> Всё из тарифа “Продвинутый”</li>
+            <li><span>✓</span> Личное сопровождение</li>
+            <li><span>✓</span> Индивидуальные разборы</li>
+            <li><span>✓</span> Помощь с запуском и оптимизацией</li>
+            <li><span>✓</span> Приоритетная обратная связь</li>
+            <li><span>✓</span> Стратегия роста под твой уровень</li>
+          </ul>
+
+          <a href="#contact" class="btn btn-secondary">Выбрать тариф</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <h2 class="section-title">Частые вопросы</h2>
+      <p class="section-desc">
+        Коротко и по факту.
+      </p>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <h4>Подойдет ли курс новичку?</h4>
+          <p>Да. Материал выстроен от базы к практике, без предположения, что ты уже “в теме”.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Будет ли практика?</h4>
+          <p>Да. Основной упор на разбор механики запусков, связок, креативов и аналитики, а не просто теория ради теории.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Какой тариф лучше выбрать?</h4>
+          <p>Если ты только входишь — “Старт”. Если хочешь реальную систему и поддержку — “Продвинутый”. Если нужна личная работа и ускорение — “Наставничество”.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Как проходит оплата?</h4>
+          <p>После заявки с тобой связываются и отправляют удобный способ оплаты и доступ к обучению.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="cta-box">
+        <div>
+          <h3>Готов зайти в арбитраж нормально, а не наугад?</h3>
+          <p>
+            Оставь заявку и выбери свой тариф. Дальше уже без хаоса:
+            понятная система, практика и движение к результату.
+          </p>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="https://t.me/yourusername" target="_blank" class="btn btn-primary">Написать в Telegram</a>
+          <a href="https://wa.me/77000000000" target="_blank" class="btn btn-secondary">Написать в WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 TrafficAcademy. Все права защищены.</div>
+      <div>Telegram: @yourusername • WhatsApp: +7 700 000 00 00</div>
+    </div>
+  </footer>
+
+  <div class="sticky-cta">
+    <a href="https://t.me/yourusername" target="_blank">🚀 Купить курс</a>
+  </div>
+
+</body>
+</html>
